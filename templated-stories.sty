@@ -1,0 +1,40 @@
+% Used for \DeclareDocumentCommand
+\RequirePackage{xparse}
+% Used for undersetting on lines
+\RequirePackage{amsmath}
+% Used for box management
+\RequirePackage[most]{tcolorbox}
+% For string comparisons
+\RequirePackage{ifthen}
+
+
+% Adapted from
+% http://tex.stackexchange.com/questions/55698/text-under-a-line
+\newcommand\@TSline[2]{$\underset{\text{#1}}{\text{\underline{#2}}}$}
+
+% A generic part of speech.
+\DeclareDocumentCommand \phrase {s o m}{%
+  \@TSline{(#3)}{
+  	\IfBooleanTF{#1}{%
+    	\begin{Form}
+	      \TextField[align=1, charsize=9pt, height=8pt]{}
+    	\end{Form}
+    }{
+		{\phantom{\rule{3cm}{8pt}}}
+    }	
+  }~
+}
+
+% A line of dialogue
+\DeclareDocumentEnvironment {line}{o}{
+	\def\tcbcolor{white}
+	\def\tinvisible{}
+	\def\tcfcolor{black!50!gray}
+	\ifthenelse{\equal{#1}{1}}{\def\tcbcolor{red!20!white}}{}%
+	\ifthenelse{\equal{#1}{2}}{\def\tcbcolor{cyan!20!white}}{}%
+	\ifthenelse{\equal{#1}{2}}{\def\tcbcolor{white}\def\tinvisible{invisible}\def\tcfcolor{white}}{}%
+	\begin{tcolorbox}[\tinvisible,colback=\tcbcolor,colframe=\tcfcolor]
+		\textbf{#1}: \quad
+}{
+	\end{tcolorbox}
+}

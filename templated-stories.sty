@@ -20,7 +20,8 @@
 	      \TextField[align=1, charsize=9pt, height=8pt]{}
     	\end{Form}
     }{
-		{\phantom{\rule{3cm}{8pt}}}
+		\IfNoValueTF{#2}{\phantom{\rule{3cm}{8pt}}}
+		{\tcbox[colback=white!80!gray!80!green]{\color{black}#2\hspace*{2cm}}}
     }	
   }~
 }
@@ -30,8 +31,8 @@
 	\def\tcbcolor{white}
 	\def\tinvisible{}
 	\def\tcfcolor{black!50!gray}
-	\ifthenelse{\equal{#1}{1}}{\def\tcbcolor{red!20!white}}{}%
-	\ifthenelse{\equal{#1}{2}}{\def\tcbcolor{cyan!20!white}}{}%
+	\ifthenelse{\equal{#1}{1}}{\def\tcbcolor{red!10!white}}{}%
+	\ifthenelse{\equal{#1}{2}}{\def\tcbcolor{cyan!10!white}}{}%
 	\ifthenelse{\equal{#1}{2}}{\def\tcbcolor{white}\def\tinvisible{invisible}\def\tcfcolor{white}}{}%
 	\begin{tcolorbox}[\tinvisible,colback=\tcbcolor,colframe=\tcfcolor]
 		\textbf{#1}: \quad

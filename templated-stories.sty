@@ -18,20 +18,20 @@
 
 % A generic part of speech.
 \DeclareDocumentCommand \phrase {s o m}{%
-  \@TSline{
-  	\@ifnotmtarg{#3}{
-  	\parbox{4cm}{\footnotesize\setstretch{1.0}\centering(#3)}
-  }
-  }{
-  	\IfBooleanTF{#1}{%
-    	\begin{Form}
-	      \TextField[align=1, charsize=9pt, height=8pt]{}
-    	\end{Form}
-    }{
-		\IfNoValueTF{#2}{\phantom{\rule{3cm}{8pt}}}
-		{\tcbox[colback=white!80!gray!80!green]{\color{black}#2\hspace*{2cm}}}
-    }	
-  }~
+	\@TSline{
+		\@ifnotmtarg{#3}{
+			\parbox{4cm}{\footnotesize\setstretch{1.0}\centering(#3)}
+		}
+	}{
+		\IfBooleanTF{#1}{%
+			\begin{Form}
+				\TextField[align=1, charsize=9pt, height=8pt]{}
+			\end{Form}
+		}{
+			\IfNoValueTF{#2}{\phantom{\rule{3cm}{8pt}}}
+			{\tcbox[colback=white!80!gray!80!green]{\color{black}#2\hspace*{2cm}}}
+		}
+	}~
 }
 
 % A line of dialogue
@@ -44,6 +44,6 @@
 	%\ifthenelse{\equal{#1}{1}}{\def\tcbcolor{white}\def\tinvisible{invisible}\def\tcfcolor{white}}{}%
 	\begin{tcolorbox}[\tinvisible,colback=\tcbcolor,colframe=\tcfcolor]
 		\textbf{#1}: \quad
-}{
+	}{
 	\end{tcolorbox}
 }

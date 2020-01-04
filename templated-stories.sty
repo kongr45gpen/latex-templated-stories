@@ -6,6 +6,8 @@
 \RequirePackage[most]{tcolorbox}
 % For string comparisons
 \RequirePackage{ifthen}
+% To set line distance for underset text
+\RequirePackage{setspace}
 
 
 % Adapted from
@@ -14,7 +16,7 @@
 
 % A generic part of speech.
 \DeclareDocumentCommand \phrase {s o m}{%
-  \@TSline{(#3)}{
+  \@TSline{\parbox{4cm}{\footnotesize\setstretch{1.0}\centering(#3)}}{
   	\IfBooleanTF{#1}{%
     	\begin{Form}
 	      \TextField[align=1, charsize=9pt, height=8pt]{}
@@ -33,7 +35,7 @@
 	\def\tcfcolor{black!50!gray}
 	\ifthenelse{\equal{#1}{1}}{\def\tcbcolor{red!10!white}}{}%
 	\ifthenelse{\equal{#1}{2}}{\def\tcbcolor{cyan!10!white}}{}%
-	\ifthenelse{\equal{#1}{2}}{\def\tcbcolor{white}\def\tinvisible{invisible}\def\tcfcolor{white}}{}%
+	%\ifthenelse{\equal{#1}{1}}{\def\tcbcolor{white}\def\tinvisible{invisible}\def\tcfcolor{white}}{}%
 	\begin{tcolorbox}[\tinvisible,colback=\tcbcolor,colframe=\tcfcolor]
 		\textbf{#1}: \quad
 }{

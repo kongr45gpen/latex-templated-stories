@@ -10,40 +10,58 @@
 \RequirePackage{setspace}
 % To check if arguments are empty
 \RequirePackage{ifmtarg}
+% To create flexible environments
+\RequirePackage{environ}
 
 
 % Adapted from
 % http://tex.stackexchange.com/questions/55698/text-under-a-line
-\newcommand\@TSline[2]{$\underset{\text{#1}}{\text{\underline{#2}}}$}
+%\newcommand\@TSline[2]{$\underset{\text{#1}}{\text{\underline{#2}}}$}
+\newcommand\@TSline[2]{%
+	\raisebox{-\baselineskip}{%
+		\shortstack{%
+			#2\\%
+			\underline{\hspace{3.5cm}}\\%
+			#1}%
+	}%
+}
+
+\def\@tcbcolor{white}
 
 % A generic part of speech.
 \DeclareDocumentCommand \phrase {s o m}{%
-	\@TSline{
-		\@ifnotmtarg{#3}{
-			\parbox{4cm}{\footnotesize\setstretch{1.0}\centering(#3)}
-		}
-	}{
+	\@TSline{%
+		\@ifnotmtarg{#3}{%
+			\parbox{4cm}{\footnotesize\setstretch{1.0}\centering\textcolor{black!70!gray}{(#3)}}%
+		}%
+	}{%
 		\IfBooleanTF{#1}{%
-			\begin{Form}
-				\TextField[align=1, charsize=9pt, height=8pt]{}
-			\end{Form}
-		}{
-			\IfNoValueTF{#2}{\phantom{\rule{3cm}{8pt}}}
-			{\tcbox[colback=white!80!gray!80!green]{\color{black}#2\hspace*{2cm}}}
-		}
-	}~
+			\begin{Form}%
+				\TextField[align=1, charsize=9pt, height=8pt]{}%
+			\end{Form}%
+		}{%
+			\def\@ttcbcolor{white!80!gray!60!\@tcbcolor}%
+			\@ifmtarg{#3}{\def\@ttcbcolor{white!80!gray!80!red}}{}%
+			\IfNoValueTF{#2}%
+				{\phantom{\rule{3cm}{8pt}}}%
+				{\tcbox[colback=\@ttcbcolor,highlight math style={enhanced}]{\color{black}#2\hspace*{2cm}}}%
+		}%
+	}%
 }
 
 % A line of dialogue
-\DeclareDocumentEnvironment {line}{o}{
-	\def\tcbcolor{white}
+\RenewEnviron{line}[1][]{
+	\def\@tcbcolor{white}
 	\def\tinvisible{}
 	\def\tcfcolor{black!50!gray}
-	\ifthenelse{\equal{#1}{1}}{\def\tcbcolor{red!10!white}}{}%
-	\ifthenelse{\equal{#1}{2}}{\def\tcbcolor{cyan!10!white}}{}%
-	%\ifthenelse{\equal{#1}{1}}{\def\tcbcolor{white}\def\tinvisible{invisible}\def\tcfcolor{white}}{}%
-	\begin{tcolorbox}[\tinvisible,colback=\tcbcolor,colframe=\tcfcolor]
-		\textbf{#1}: \quad
-	}{
-	\end{tcolorbox}
+	\ifthenelse{\equal{#1}{1}}{\def\@tcbcolor{red!10!white}}{}%
+	\ifthenelse{\equal{#1}{2}}{\def\@tcbcolor{cyan!10!white}}{}%
+	\ifthenelse{\equal{#1}{3}}{\def\@tcbcolor{yellow!10!white}}{}%
+	\ifthenelse{\equal{#1}{\character} \or \equal{\character}{all}}{
+		\begin{tcolorbox}[\tinvisible,colback=\@tcbcolor,colframe=\tcfcolor]
+			\textbf{#1}: \quad
+			\BODY
+		\end{tcolorbox}
+	}{\def\tinvisible{invisible}}%
+	%\ifthenelse{\equal{#1}{1}}{\def\@tcbcolor{white}\def\tinvisible{invisible}\def\tcfcolor{white}}{}%
 }

@@ -1,0 +1,89 @@
+\documentclass{article}
+
+% Set to 1 or 2
+\def\character{all}
+
+\usepackage{lastpage}
+\usepackage{templated-stories}
+\usepackage[extreme]{savetrees}
+\usepackage{fancyhdr}
+\usepackage{fontawesome}
+\usepackage{graphicx}
+\usepackage{tikzducks}
+
+\usepackage[T1]{fontenc}
+\usepackage{newpxtext}
+
+\fancyhead[L]{Templated Stories \faNewspaperO~DWHDVR}
+\fancyhead[C]{\faUser~\character}
+\fancyhead[R]{\thepage/\pageref{LastPage}}
+\fancyfoot{}
+\pagestyle{fancy}
+
+\begin{document}
+	\begin{center}
+	\begin{tikzpicture}
+		\duck[witch=black!50!gray,
+		longhair=red!80!black,
+		jacket=black!50!gray,
+		magicwand]
+	\end{tikzpicture}
+	\end{center}
+	
+	A third person, \phrase[A]{person} acts as a prisoner. \textbf{1} is speaking to \phrase[A]{}.
+	
+	\begin{line}[1]
+		Please. I'm begging you. I'll do anything for \phrase[A]{}! Put me in his/her place. You can do anything to me, I don't care, just get him/her to \phrase{place}!
+	\end{line}
+
+	\begin{line}[2]
+		The prisoner and the \phrase{object} will \phrase{verb} together. Observe. The last child of \phrase{noun representing something large or important} is powerless.
+	\end{line}
+	
+	\begin{line}[1]
+		Don't move, \phrase[A]{}. Stay still. 
+	\end{line}
+
+	\begin{line}[2]
+		Guard them! On your knees! Surrender!
+	\end{line}
+
+	\begin{line}[1]
+		You can't, \phrase[C]{}. Just listen to me! Just stop!
+	\end{line}
+
+	\begin{line}[2]
+		\emph{(evil laugh)} Ah, ha ha ha! Nothing can stop the \phrase[D as noun]{}. Nothing and no one!
+	\end{line}
+
+	EXPLOSIONS happen!
+	
+	\begin{line}[1]
+		But that's...
+	\end{line}
+
+	\begin{line}[2]
+		Impossible!
+	\end{line}
+
+	\begin{line}[1]
+		We've stopped the \phrase[D]{}!
+		\phrase[A]{}, you are \phrase{adjective}!
+	\end{line}
+
+	\begin{line}[2]
+		Noooooo! Once again, you've foiled my plans. And I would have \phrase{verb, past participle} if it wasn't for you damn \phrase{gerund} kids!
+	\end{line}
+
+	\begin{line}[1]
+		Oh no! The \phrase[D]{} is continuing! We must \phrase{verb} the \phrase{device} into a \phrase{sci-fi adjective} \phrase{sci-fi noun}! Hurry up! \phrase[C]{}, you have betrayed us.
+	\end{line}
+
+	\begin{line}[2]
+		It's not me. It was \phrase{person we don't like}. How do you feel, \phrase[B]{}. \phrase{feeling}, \phrase{weird feeling}, \phrase{weird feeling}?
+	\end{line}
+
+	\begin{line}[1]
+		You have won, but at what cost? How could I not \phrase{verb} the \phrase[D]{} myself? Why, why, why????
+	\end{line}
+\end{document}
